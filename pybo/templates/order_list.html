@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>주문 목록</title>
+</head>
+<body>
+    <h1>주문 목록</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>주문 번호</th>
+                <th>커피</th>
+                <th>녹차</th>
+                <th>바나나 우유</th>
+                <th>피크닉</th>
+                <th>주문상태</th>
+                <th>주문시간</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.coffee }}</td>
+                    <td>{{ order.greentea }}</td>
+                    <td>{{ order.bananamilk }}</td>
+                    <td>{{ order.picnic }}</td>
+                    <td class="status" data-id="{{ order.id }}">{{ order.status }}</td>
+                    <td>{{ order.order_time.strftime('%Y-%m-%d %p %I:%M') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // 페이지가 로드되면 주기적으로 주문 상태 업데이트를 수행
+        $(document).ready(function () {
+            function updateOrderStatus() {
+                // 각 주문 항목에 대해 AJAX 요청 보내기
+                $('.status').each(function () {
+                    var statusCell = $(this);
+                    var orderId = statusCell.data('id');
+                    $.get('/get_order_status/' + orderId, function (data) {
+                        // 서버에서 받은 상태 업데이트
+                        statusCell.text(data.status);
+                    });
+                });
+            }
+
+            // 5초마다 업데이트
+            setInterval(updateOrderStatus, 5000);
+        });
+    </script>
+
+    <!-- '주문하러 가기' 버튼 -->
+    <a href="{{ url_for('main.index') }}">주문하러 가기</a>
+</body>
+</html>
