@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>주문 페이지</title>
+</head>
+<body>
+    <h1>주문 페이지</h1>
+    <form method="POST" action="/order">
+        <label for="coffee">커피 (재고: {{ stock.coffee }})</label>
+        <input type="number" id="coffee" name="coffee" min="0" max="{{ stock.coffee }}" required><br>
+
+        <label for="greentea">녹차 (재고: {{ stock.greentea }})</label>
+        <input type="number" id="greentea" name="greentea" min="0" max="{{ stock.greentea }}" required><br>
+
+        <label for="bananamilk">바나나 우유 (재고: {{ stock.bananamilk }})</label>
+        <input type="number" id="bananamilk" name="bananamilk" min="0" max="{{ stock.bananamilk }}" required><br>
+
+        <label for="picnic">피크닉 (재고: {{ stock.picnic }})</label>
+        <input type="number" id="picnic" name="picnic" min="0" max="{{ stock.picnic }}" required><br>
+
+        <input type="submit" value="주문">
+    </form>
+
+    <!-- 빡쳐서 만든 '주문 목록 초기화' 버튼 -->
+    <form method="POST" action="/reset_order_list">
+        <input type="submit" value="주문 목록 초기화">
+    </form>
+</body>
+</html>
