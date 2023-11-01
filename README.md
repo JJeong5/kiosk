@@ -6,9 +6,13 @@ https://wikidocs.net/81039
 
 ## 설치 명령어 (Environment Setup)
 python -m venv myproject
+
 pip install flask
+
 python -m pip install --upgrade pip
+
 pip install flask-migrate
+
 pip install flask-wtf
 
 ## ERD
