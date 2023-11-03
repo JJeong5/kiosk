@@ -1,4 +1,0 @@
-[build]
-  base = "pybo"
-  command = "python -m pybo"
-  publish = "pybo/static"
