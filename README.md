@@ -41,27 +41,27 @@ flask run
 ![kiosk_project_ERD](https://github.com/JJeong5/kiosk/assets/92209877/42243fc6-8666-4473-a3e8-1d6896251ae4)
 
 ## 트리 다이어그램
-kiosk
-├─ README.md
-├─ pybo.db
-└─ pybo
-   ├─ __init__.py
-   ├─ models.py
-   ├─ config.py
-   ├─ static
-   │  ├─ bootstrap.min.css
-   │  └─ image
-   │     ├─ banana.jpg
-   │     ├─ choco.jpg
-   │     ├─ coffee.jpg
-   │     ├─ greentea.jpg
-   │     ├─ icetea.jpg
-   │     └─ picnic.jpg
-   ├─ templates
-   │  ├─ order.html
-   │  └─ order_list.html
-   └─ views
-      └─ main_views.py
+kiosk  
+├─ README.md  
+├─ pybo.db  
+└─ pybo  
+   ├─ __init__.py  
+   ├─ models.py  
+   ├─ config.py  
+   ├─ static  
+   │  ├─ bootstrap.min.css  
+   │  └─ image  
+   │     ├─ banana.jpg  
+   │     ├─ choco.jpg  
+   │     ├─ coffee.jpg  
+   │     ├─ greentea.jpg  
+   │     ├─ icetea.jpg  
+   │     └─ picnic.jpg  
+   ├─ templates  
+   │  ├─ order.html  
+   │  └─ order_list.html  
+   └─ views  
+      └─ main_views.py  
 
 ## 실행방법 참고 사이트
 https://wikidocs.net/81039
