@@ -1,191 +1,207 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>주문 목록</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='bootstrap.min.css') }}"
+    />
     <style>
-        body {
-            background-color: #f5f5f5;
-        }
+      body {
+        background-color: #f5f5f5;
+      }
 
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
 
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+      }
 
-        .form-group label {
-            font-weight: bold;
-        }
+      .form-group label {
+        font-weight: bold;
+      }
 
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+      }
 
-        .btn-danger {
-            background-color: #dc3545;
-            border-color: #dc3545;
-        }
+      .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+      }
 
-        /* 입력 칸의 크기를 조정 */
-        .form-control {
-            width: 50%;
-            margin: 0;
-            border: none;
-            /* 기본 테두리 제거 */
-            background-color: #f5f5f5;
-            /* 배경색 설정 */
-            color: #333;
-            /* 글자색 설정 */
-            padding: 10px;
-            /* 내부 여백 설정 */
-        }
+      /* 입력 칸의 크기를 조정 */
+      .form-control {
+        width: 50%;
+        margin: 0;
+        border: none;
+        /* 기본 테두리 제거 */
+        background-color: #f5f5f5;
+        /* 배경색 설정 */
+        color: #333;
+        /* 글자색 설정 */
+        padding: 10px;
+        /* 내부 여백 설정 */
+      }
 
-        /* 포커스 시 스타일 변경 */
-        .form-control:focus {
-            background-color: #fff;
-            /* 포커스 시 배경색 변경 */
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
-            /* 포커스 시 그림자 효과 추가 */
-        }
+      /* 포커스 시 스타일 변경 */
+      .form-control:focus {
+        background-color: #fff;
+        /* 포커스 시 배경색 변경 */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
+        /* 포커스 시 그림자 효과 추가 */
+      }
 
-        /* 이미지 스타일 */
-        .menu-image {
-            max-width: 100px;
-            /* 이미지의 최대 너비를 설정 */
-            vertical-align: middle;
-            /* 텍스트와 이미지를 수직으로 가운데 정렬 */
-            margin-right: 10px;
-            /* 이미지 오른쪽 여백 설정 */
-        }
+      /* 이미지 스타일 */
+      .menu-image {
+        max-width: 100px;
+        /* 이미지의 최대 너비를 설정 */
+        vertical-align: middle;
+        /* 텍스트와 이미지를 수직으로 가운데 정렬 */
+        margin-right: 10px;
+        /* 이미지 오른쪽 여백 설정 */
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="container mt-5">
-        <h1>주문 목록</h1>
-        <div class="container my-3">
-            <table border="1" class="table">
-                <thead>
-                    <tr class="table-dark">
-                        <th>주문번호</th>
-                        <th>아메리카노</th>
-                        <th>아이스티</th>
-                        <th>녹차라떼</th>
-                        <th>초코라떼</th>
-                        <th>주문상태</th>
-                        <th>주문시간</th>
-                        <th>주문취소</th>
-                        <th>주문접수</th>
-                        <th>조리완료</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order in orders %}
-                    <tr>
-                        <td>{{ order.id }}</td>
-                        <td>{{ order.coffee }}</td>
-                        <td>{{ order.greentea }}</td>
-                        <td>{{ order.bananamilk }}</td>
-                        <td>{{ order.picnic }}</td>
-                        <td class="status" data-id="{{ order.id }}">{{ order.status }}</td>
-                        <td>{{ order.order_time.strftime('%Y-%m-%d %p %I:%M') }}</td>
-                        <td><button class="cancel-button" data-id="{{ order.id }}">주문 취소</button></td>
-                        <td><button class="accept-button" data-id="{{ order.id }}">주문 접수</button></td>
-                        <td><button class="complete-button" data-id="{{ order.id }}">조리 완료</button></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+      <h1>주문 목록</h1>
+      <div class="container my-3">
+        <table border="1" class="table">
+          <thead>
+            <tr class="table-dark">
+              <th>주문번호</th>
+              <th>아메리카노</th>
+              <th>아이스티</th>
+              <th>녹차라떼</th>
+              <th>초코라떼</th>
+              <th>주문상태</th>
+              <th>주문시간</th>
+              <th>주문취소</th>
+              <th>주문접수</th>
+              <th>조리완료</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+            <tr>
+              <td>{{ order.id }}</td>
+              <td>{{ order.coffee }}</td>
+              <td>{{ order.greentea }}</td>
+              <td>{{ order.bananamilk }}</td>
+              <td>{{ order.picnic }}</td>
+              <td class="status" data-id="{{ order.id }}">
+                {{ order.status }}
+              </td>
+              <td>{{ order.order_time.strftime('%Y-%m-%d %p %I:%M') }}</td>
+              <td>
+                <button class="cancel-button" data-id="{{ order.id }}">
+                  주문 취소
+                </button>
+              </td>
+              <td>
+                <button class="accept-button" data-id="{{ order.id }}">
+                  주문 접수
+                </button>
+              </td>
+              <td>
+                <button class="complete-button" data-id="{{ order.id }}">
+                  조리 완료
+                </button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // '주문 취소' 버튼 클릭 이벤트 처리
-        $('.cancel-button').click(function () {
-            var orderId = $(this).data('id');
-            if (confirm('주문을 취소하시겠습니까?')) {
-                // AJAX를 사용하여 주문 취소 요청 보내기
-                $.ajax({
-                    url: '/cancel_order/' + orderId,
-                    type: 'DELETE',
-                    success: function (data) {
-                        // 성공적으로 주문이 취소된 경우 화면에서 해당 주문 삭제
-                        if (data.result === 'success') {
-                            // 해당 주문 항목의 부모 행(tr) 삭제
-                            $(this).closest('tr').remove();
-                        } else {
-                            alert('주문 취소 중 오류가 발생했습니다.');
-                        }
-                    }.bind(this),
-                    error: function () {
-                        alert('주문 취소 중 오류가 발생했습니다.');
-                    }
-                });
+      // '주문 취소' 버튼 클릭 이벤트 처리
+      $(".cancel-button").click(function () {
+        var orderId = $(this).data("id");
+        if (confirm("주문을 취소하시겠습니까?")) {
+          // AJAX를 사용하여 주문 취소 요청 보내기
+          $.ajax({
+            url: "/cancel_order/" + orderId,
+            type: "DELETE",
+            success: function (data) {
+              // 성공적으로 주문이 취소된 경우 화면에서 해당 주문 삭제
+              if (data.result === "success") {
+                // 해당 주문 항목의 부모 행(tr) 삭제
+                $(this).closest("tr").remove();
+              } else {
+                alert("주문 취소 중 오류가 발생했습니다.");
+              }
+            }.bind(this),
+            error: function () {
+              alert("주문 취소 중 오류가 발생했습니다.");
+            },
+          });
+        }
+      });
+
+      // '주문 접수' 버튼 클릭 이벤트 처리
+      $(".accept-button").click(function () {
+        var orderId = $(this).data("id");
+        // AJAX를 사용하여 주문 접수 요청 보내기
+        $.ajax({
+          url: "/accept_order/" + orderId,
+          type: "POST",
+          success: function (data) {
+            // 성공적으로 주문이 접수된 경우 상태 업데이트
+            if (data.result === "success") {
+              // 해당 주문 항목의 상태 업데이트
+              $('.status[data-id="' + orderId + '"]').text("조리 중");
+            } else {
+              alert("주문 접수 중 오류가 발생했습니다.");
             }
+          },
+          error: function () {
+            alert("주문 접수 중 오류가 발생했습니다.");
+          },
         });
+      });
 
-        // '주문 접수' 버튼 클릭 이벤트 처리
-        $('.accept-button').click(function () {
-            var orderId = $(this).data('id');
-            // AJAX를 사용하여 주문 접수 요청 보내기
-            $.ajax({
-                url: '/accept_order/' + orderId,
-                type: 'POST',
-                success: function (data) {
-                    // 성공적으로 주문이 접수된 경우 상태 업데이트
-                    if (data.result === 'success') {
-                        // 해당 주문 항목의 상태 업데이트
-                        $('.status[data-id="' + orderId + '"]').text('조리 중');
-                    } else {
-                        alert('주문 접수 중 오류가 발생했습니다.');
-                    }
-                },
-                error: function () {
-                    alert('주문 접수 중 오류가 발생했습니다.');
-                }
-            });
+      // '조리 완료' 버튼 클릭 이벤트 처리
+      $(".complete-button").click(function () {
+        var orderId = $(this).data("id");
+        // AJAX를 사용하여 주문 완료 요청 보내기
+        $.ajax({
+          url: "/complete_order/" + orderId,
+          type: "POST",
+          success: function (data) {
+            // 성공적으로 주문이 완료된 경우 상태 업데이트
+            if (data.result === "success") {
+              // 해당 주문 항목의 상태 업데이트
+              $('.status[data-id="' + orderId + '"]').text("조리 완료");
+            } else {
+              alert("주문 완료 중 오류가 발생했습니다.");
+            }
+          },
+          error: function () {
+            alert("주문 완료 중 오류가 발생했습니다.");
+          },
         });
-
-        // '조리 완료' 버튼 클릭 이벤트 처리
-        $('.complete-button').click(function () {
-            var orderId = $(this).data('id');
-            // AJAX를 사용하여 주문 완료 요청 보내기
-            $.ajax({
-                url: '/complete_order/' + orderId,
-                type: 'POST',
-                success: function (data) {
-                    // 성공적으로 주문이 완료된 경우 상태 업데이트
-                    if (data.result === 'success') {
-                        // 해당 주문 항목의 상태 업데이트
-                        $('.status[data-id="' + orderId + '"]').text('조리 완료');
-                    } else {
-                        alert('주문 완료 중 오류가 발생했습니다.');
-                    }
-                },
-                error: function () {
-                    alert('주문 완료 중 오류가 발생했습니다.');
-                }
-            });
-        });
+      });
     </script>
 
     <div class="row mt-3">
-        <div class="col-md-2 mx-auto">
-            <a href="{{ url_for('main.index') }}" class="btn btn-info btn-block">주문하러 가기</a>
-        </div>
+      <div class="col-md-2 mx-auto">
+        <a href="{{ url_for('main.index') }}" class="btn btn-info btn-block"
+          >주문하러 가기</a
+        >
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

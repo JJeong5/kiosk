@@ -57,6 +57,13 @@ def reset_order_list():
     # 주문 목록 초기화
     db.session.query(Order).delete()
     db.session.commit()
+    
+    # 초기 재고 다시 설정
+    initial_stock['coffee'] = 100
+    initial_stock['greentea'] = 100
+    initial_stock['bananamilk'] = 100
+    initial_stock['picnic'] = 100
+    
     return redirect(url_for('main.order_list'))
 
 # 주문 취소 라우트
